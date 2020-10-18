@@ -84,6 +84,31 @@
                     Laravel
                 </div>
 
+                <form class="m-b-md" method="post" action="{{ route('currency/list') }}">
+                    @csrf
+                    <div>
+                        <label for="date"></label>
+                        <input id="date" name="date" type="date">
+                        <br>
+                        <br>
+                    </div>
+                    <div>
+                        <label for="list"></label>
+                        <input id="list" name="list" type="text" placeholder="Пример: USD, CZK">
+                        <br>
+                        <br>
+                    </div>
+                    <div>
+                        <label for="note"></label>
+                        <input id="note" name="note" type="text" placeholder="Комментарий">
+                        <br>
+                        <br>
+                    </div>
+                    <div>
+                        <input type="submit" value="Отправить">
+                    </div>
+                </form>
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
