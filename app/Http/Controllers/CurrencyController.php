@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RangeRecord;
 use DateTime;
 use Exception;
 use App\Models\DbRangeRepository;
