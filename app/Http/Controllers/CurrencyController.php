@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use Exception;
-use App\Models\DbRangeRepository;
-use App\Models\DbCurrencyRepository;
+use App\Repositories\MysqlRangeRepository;
+use App\Repositories\MysqlCurrencyRepository;
 use App\Components\Currency\Models\Range;
 use Illuminate\Http\Request;
 
@@ -19,8 +19,8 @@ class CurrencyController extends Controller
     public function actionGetByDate($day, $month, $year)
     {
         try {
-            $repo = new DbCurrencyRepository();
-            $res = $repo->findByDate("$day/$month/$year");
+            $repo = new MysqlCurrencyRepository();
+            $res = $repo->findByDate('date', "$day/$month/$year");
             return $this->response($res);
         } catch (Exception $e) {
             return $this->response($e->getMessage());
@@ -45,8 +45,10 @@ class CurrencyController extends Controller
             $currencyList = array_map('trim', explode(',', $data['list']));
             $note = $data['note'];
 
-            $range = new Range(new DbCurrencyRepository(), new DbRangeRepository());
+            $rangeRepo = new MysqlRangeRepository();
+            $range = new Range(new MysqlCurrencyRepository());
             $range->fill(compact('currencyList', 'date', 'note'));
+            $rangeRepo->save($range);
             return $this->response($range->prepareAndSave());
         } catch (Exception $e) {
             return $this->response($e->getMessage());
@@ -56,7 +58,7 @@ class CurrencyController extends Controller
     public function actionGetListById($id)
     {
         try {
-            $repo = new DbRangeRepository();
+            $repo = new MysqlRangeRepository();
             return $this->response($repo->find('id', $id));
         } catch (Exception $e) {
             return $this->response($e->getMessage());

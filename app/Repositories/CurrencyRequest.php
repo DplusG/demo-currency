@@ -1,15 +1,32 @@
 <?php
 
-namespace App\Components\Currency;
+namespace App\Repositories;
 
+use App\Components\Currency\Models\Range;
+use App\Interfaces\RangeRepository;
 use Exception;
 use App\Http\Request;
 use App\Components\Validators\DateValidator;
 use App\Components\Currency\Models\Currency;
 
-class CurrencyRequest extends Request
+class CbrRangeRepository implements RangeRepository
 {
     protected $url = "http://cbr.ru/scripts/XML_daily.asp";
+
+    public function save(Range $range)
+    {
+        return true;
+    }
+
+    public function batch(array $arr)
+    {
+        return true;
+    }
+
+    public function find($key, $value)
+    {
+        $req = new Request($this->url);
+    }
 
     /**
      * Результаты

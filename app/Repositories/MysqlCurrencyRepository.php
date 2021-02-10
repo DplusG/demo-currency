@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Repositories;
 
 use DateTime;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use App\Interfaces\CurrencyRepositoryInterface;
+use App\Interfaces\CurrencyRepository;
 use App\Components\Validators\DateValidator;
 use App\Components\Currency\CurrencyRequest;
+use App\Components\Currency\Models\Currency;
 
-
-class DbCurrencyRepository implements CurrencyRepositoryInterface
+class MysqlCurrencyRepository implements CurrencyRepository
 {
+    protected $table = 'currency';
+
     /**
      * @inheritdoc
      */
@@ -26,7 +28,7 @@ class DbCurrencyRepository implements CurrencyRepositoryInterface
 
         $whereConditions = array_merge($andWhere, [['date', '=', $d->format('Y-m-d H:i:s')]]);
 
-        $query = DB::table('currency');
+        $query = DB::table($this->table);
         foreach ($whereConditions as $condition) {
             if (strtolower($condition[1]) == 'in') {
                 $query->whereIn($condition[0], $condition[2]);
@@ -65,6 +67,22 @@ class DbCurrencyRepository implements CurrencyRepositoryInterface
         $req = new CurrencyRequest();
         $req->setDate($date);
         $req->execute();
-        return (new CurrencyRecord())->batchCurrencies($req->getCurrencyList());
+        return $this->batch($req->getCurrencyList());
+    }
+
+    public function save(Currency $curr)
+    {
+        $model = (new static());
+        $model->fill($curr->getAttributes());
+        return $model->save();
+    }
+
+    public function batch(array $arr)
+    {
+        foreach ($arr as $curr) {
+            $this->save($curr);
+        }
+
+        return true;
     }
 }

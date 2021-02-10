@@ -3,8 +3,7 @@
 namespace App\Components\Currency\Models;
 
 use App\Components\Validators\ListValidator;
-use App\Interfaces\CurrencyRepositoryInterface;
-use App\Interfaces\RangeRepositoryInterface;
+use App\Interfaces\CurrencyRepository;
 use DateTime;
 use Exception;
 
@@ -19,12 +18,10 @@ class Range
     protected $note;
 
     protected $currRepo;
-    protected $rangeRepo;
 
-    public function __construct(CurrencyRepositoryInterface $currRepo, RangeRepositoryInterface $rangeRepo)
+    public function __construct(CurrencyRepository $currRepo)
     {
         $this->currRepo = $currRepo;
-        $this->rangeRepo = $rangeRepo;
     }
 
     public function rules()
@@ -42,8 +39,7 @@ class Range
             $d = DateTime::createFromFormat('d/m/Y', $this->date);
             $d->setTime(0, 0, 0);
             $this->date = $d->format('Y-m-d H:i:s');
-
-            return $this->rangeRepo->save($this);
+            return true;
         } catch (Exception $e) {
             return false;
         }

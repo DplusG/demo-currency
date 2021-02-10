@@ -2,7 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/README.md" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Components/Currency/CurrencyRequest.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Components/Currency/Models/Currency.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Components/Currency/Models/GetSetTrait.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Components/Currency/Models/Range.php" charset="UTF-8" />
@@ -10,12 +9,11 @@
     <file url="file://$PROJECT_DIR$/app/Components/Validators/ListValidator.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/CurrencyController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Request.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Interfaces/CurrencyRepositoryInterface.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Interfaces/RangeRepositoryInterface.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Models/CurrencyRecord.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Models/DbCurrencyRepository.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Models/DbRangeRepository.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Models/RangeRecord.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Interfaces/CurrencyRepository.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Interfaces/RangeRepository.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Repositories/CurrencyRequest.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Repositories/MysqlCurrencyRepository.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Repositories/MysqlRangeRepository.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/migrations/2020_10_15_180552_create_currency_table.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/database/migrations/2020_10_18_144123_create_range_table.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/welcome.blade.php" charset="UTF-8" />
